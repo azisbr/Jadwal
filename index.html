@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard X TKR - Anti Salah Kostum</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --bg: #0b0f1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass: rgba(255, 255, 255, 0.1);
+            --putih-abu: #f8fafc;
+            --pdh: #94a3b8;
+            --jumat: #a855f7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0f1a;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 15px;
+            padding-bottom: 50px;
+        }
+
+        /* Info Seragam Modern */
+        .uniform-alert {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .uniform-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .uniform-text h4 { margin: 0; color: var(--primary); font-size: 0.9rem; }
+        .uniform-text p { margin: 2px 0 0; font-weight: bold; font-size: 1.1rem; }
+
+        h1 {
+            text-align: center;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .schedule-grid { display: flex; flex-direction: column; gap: 20px; }
+
+        .day-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass);
+            border-radius: 20px;
+            padding: 18px;
+            position: relative;
+        }
+
+        .badge-baju {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .day-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subject-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .time { font-size: 0.7rem; color: #94a3b8; display: block; }
+        .name { font-weight: 600; font-size: 0.9rem; }
+        .teacher { font-size: 0.65rem; color: var(--secondary); font-style: italic; }
+
+        /* Mission Control */
+        .todo-section {
+            margin-top: 30px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px dashed var(--glass);
+        }
+
+        .input-box { display: flex; gap: 10px; margin-bottom: 15px; }
+        input { flex: 1; background: #1e293b; border: 1px solid var(--glass); padding: 12px; border-radius: 12px; color: white; outline: none; }
+        .add-btn { background: var(--primary); border: none; padding: 0 15px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+        .task-list { list-style: none; padding: 0; }
+        .task-item {
+            background: var(--glass);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        .delete-btn { color: #ff4757; cursor: pointer; padding: 5px; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="uniform-alert">
+        <div class="uniform-icon"><i class="fas fa-tshirt"></i></div>
+        <div class="uniform-text">
+            <h4>OUTFIT HARI INI:</h4>
+            <p id="today-outfit">Loading...</p>
+        </div>
+    </div>
+
+    <h1><i class="fas fa-engine"></i> X TKR DASHBOARD</h1>
+
+    <div class="schedule-grid">
+        <div class="day-card" style="border-left: 5px solid #fff;">
+            <span class="badge-baju">Putih Abu²</span>
+            <div class="day-title"><i class="fas fa-flag"></i> SENIN</div>
+            <div class="subject-item"><div><span class="time">07:00-07:40</span><span class="name">Upacara</span></div></div>
+            <div class="subject-item"><div><span class="time">07:40-10:35</span><span class="name">Prod. TKR</span></div><span class="teacher">Rudi H.</span></div>
+            <div class="subject-item"><div><span class="time">10:35-12:25</span><span class="name">SBK</span></div><span class="teacher">Nurul H.</span></div>
+            <div class="subject-item"><div><span class="time">12:25-14:45</span><span class="name">B. Indonesia</span></div><span class="teacher">Yuni H.</span></div>
+        </div>
+
+        <div class="day-card" style="border-left: 5px solid #4facfe;">
+            <span class="badge-baju">PDH</span>
+            <div class="day-title" style="color: #4facfe;"><i class="fas fa-wrench"></i> SELASA</div>
+            <div class="subject-item"><div><span class="time">07:00-09:40</span><span class="name">Prod. TKR</span></div><span class="teacher">Rudi H.</span></div>
+            <div class="subject-item"><div><span class="time">09:55-11:55</span><span class="name">Agama Islam</span></div><span class="teacher">Imam W.</span></div>
+            <div class="subject-item"><div><span class="time">11:55-13:35</span><span class="name">B.inggris</span></div><span class="teacher">Junaidi.G.</span></div>
+            <div class="subject-item"><div><span class="time">13:35-14:45</span><span class="name">Sejarah / TSM</span></div><span class="teacher">Ernawati</span></div>
+        </div>
+
+        <div class="day-card" style="border-left: 5px solid #4facfe;">
+            <span class="badge-baju">PDH</span>
+            <div class="day-title" style="color: #4facfe;"><i class="fas fa-microchip"></i> RABU</div>
+            <div class="subject-item"><div><span class="time">07:00-09:40</span><span class="name">Prod. TKR/TSM</span></div><span class="teacher">Mirwan</span></div>
+            <div class="subject-item"><div><span class="time">09:55-11:15</span><span class="name">Matematika</span></div><span class="teacher">Rhohaila</span></div>
+            <div class="subject-item"><div><span class="time">12:25-14:45</span><span class="name">Informatika</span></div><span class="teacher">Viz Zuty</span></div>
+        </div>
+
+        <div class="day-card" style="border-left: 5px solid #fff;">
+            <span class="badge-baju">Putih Abu²</span>
+            <div class="day-title" style="color: #fbbf24;"><i class="fas fa-bolt"></i> KAMIS</div>
+            <div class="subject-item"><div><span class="time">07:00-09:00</span><span class="name">Matematika</span></div><span class="teacher">Rhohaila</span></div>
+            <div class="subject-item"><div><span class="time">08:20-10:35</span><span class="name">Pjok</span></div><span class="teacher">Tommy P.</span></div>
+            <div class="subject-item"><div><span class="time">10:35-14:45</span><span class="name">Projek IPAS</span></div><span class="teacher">M. Choliq</span></div>
+        </div>
+
+        <div class="day-card" style="border-left: 5px solid var(--jumat);">
+            <span class="badge-baju">Olahraga/Pramuka</span>
+            <div class="day-title" style="color: var(--jumat);"><i class="fas fa-mosque"></i> JUM'AT</div>
+            <div class="subject-item"><div><span class="time">07:00-07:40</span><span class="name">Jum'at Bersih / Senam</span></div></div>
+            <div class="subject-item"><div><span class="time">07:40-09:00</span><span class="name">PKN</span></div><span class="teacher">Sugiyanto</span></div>
+            <div class="subject-item"><div><span class="time">09:15-10:45</span><span class="name">B. Inggris</span></div><span class="teacher">Junaedi G.</span></div>
+        </div>
+    </div>
+
+    <div class="todo-section">
+        <h3><i class="fas fa-clipboard-list"></i> TUGAS / PR</h3>
+        <div class="input-box">
+            <input type="text" id="tIn" placeholder="Tulis PR di sini...">
+            <button class="add-btn" onclick="addTask()"><i class="fas fa-plus"></i></button>
+        </div>
+        <ul id="tL" class="task-list"></ul>
+    </div>
+
+    <script>
+        // --- LOGIKA SERAGAM ---
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const now = new Date();
+        const dayName = days[now.getDay()];
+        let outfit = "";
+
+        if (dayName === 'Senin' || dayName === 'Kamis') outfit = "Putih Abu-Abu (Rapi!)";
+        else if (dayName === 'Selasa' || dayName === 'Rabu') outfit = "PDH (Gagah!)";
+        else if (dayName === 'Jumat') outfit = "Pakaian Olahraga / Pramuka";
+        else outfit = "Libur Bray, Rebahan Aja!";
+
+        document.getElementById('today-outfit').innerText = outfit;
+
+
+        // --- LOGIKA LOCAL STORAGE TUGAS ---
+        const taskInput = document.getElementById('tIn');
+        const taskListUI = document.getElementById('tL');
+
+        document.addEventListener('DOMContentLoaded', getTasks);
+
+        function addTask() {
+            const val = taskInput.value;
+            if(!val) return;
+            createTaskElement(val);
+            saveLocalTask(val);
+            taskInput.value = '';
+        }
+
+        function createTaskElement(text) {
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.innerHTML = `
+                <span>${text}</span>
+                <i class="fas fa-trash delete-btn" onclick="removeTask(this, '${text}')"></i>
+            `;
+            taskListUI.appendChild(li);
+        }
+
+        function saveLocalTask(task) {
+            let tasks = localStorage.getItem('myTasks') === null ? [] : JSON.parse(localStorage.getItem('myTasks'));
+            tasks.push(task);
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
+        }
+
+        function getTasks() {
+            let tasks = localStorage.getItem('myTasks') === null ? [] : JSON.parse(localStorage.getItem('myTasks'));
+            tasks.forEach(task => createTaskElement(task));
+        }
+
+        function removeTask(element, taskText) {
+            element.parentElement.remove();
+            let tasks = JSON.parse(localStorage.getItem('myTasks'));
+            const taskIndex = tasks.indexOf(taskText);
+            tasks.splice(taskIndex, 1);
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
+        }
+    </script>
+</body>
+</html>
